@@ -1,0 +1,41 @@
+{
+  "name": "habityzer-cli",
+  "version": "1.0.0",
+  "description": "CLI tool for managing Habityzer tasks from your terminal",
+  "main": "lib/index.js",
+  "bin": {
+    "habityzer": "./bin/habityzer"
+  },
+  "scripts": {
+    "build": "cp src/cli.js lib/index.js",
+    "prepublishOnly": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "habityzer",
+    "cli",
+    "task",
+    "management",
+    "productivity",
+    "todo"
+  ],
+  "author": "Habityzer Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "lib/",
+    "bin/",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/habityzer/habityzer-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/habityzer/habityzer-cli/issues"
+  },
+  "homepage": "https://github.com/habityzer/habityzer-cli#readme"
+}
