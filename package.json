@@ -32,10 +32,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/habityzer/habityzer-cli.git"
+    "url": "https://github.com/Habityzer/habityzer-cli.git"
   },
   "bugs": {
-    "url": "https://github.com/habityzer/habityzer-cli/issues"
+    "url": "https://github.com/Habityzer/habityzer-cli/issues"
   },
-  "homepage": "https://github.com/habityzer/habityzer-cli#readme"
+  "homepage": "https://github.com/Habityzer/habityzer-cli#readme"
 }

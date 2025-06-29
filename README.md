@@ -282,10 +282,10 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 🔗 Links
 
-- [GitHub Repository](https://github.com/habityzer/habityzer-cli)
+- [GitHub Repository](https://github.com/Habityzer/habityzer-cli)
 - [NPM Package](https://www.npmjs.com/package/habityzer-cli)
 - [Habityzer Platform](https://habityzer.com)
-- [Report Issues](https://github.com/habityzer/habityzer-cli/issues)
+- [Report Issues](https://github.com/Habityzer/habityzer-cli/issues)
 
 ## 📊 Task Status Reference
 
