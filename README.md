@@ -91,7 +91,16 @@ npm run task:create "New task title"
 
 ## 🎯 Cursor Integration
 
-### Method 1: Terminal Integration
+### Method 1: AI Assistant Integration (Recommended)
+
+Copy the `.cursorrules` file from this repository to your project root. This configures Cursor's AI to automatically use the Habityzer CLI when you ask about tasks.
+
+**Quick setup:**
+1. Copy `.cursorrules` to your project root
+2. Ask the AI: "What are my current tasks?"
+3. The AI will automatically run `npx habityzer list` and show results
+
+### Method 2: Terminal Integration
 
 1. Open Cursor terminal (`Ctrl/Cmd + J`)
 2. Run Habityzer commands directly:
@@ -99,7 +108,7 @@ npm run task:create "New task title"
    npx habityzer list
    ```
 
-### Method 2: Custom Commands
+### Method 3: Custom Commands
 
 Add Cursor custom commands by creating `.cursor/commands.json`:
 
@@ -120,7 +129,7 @@ Add Cursor custom commands by creating `.cursor/commands.json`:
 }
 ```
 
-### Method 3: Workspace Tasks
+### Method 4: Workspace Tasks
 
 Add to `.vscode/tasks.json` (also works in Cursor):
 
