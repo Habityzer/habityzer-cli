@@ -1,6 +1,6 @@
 {
   "name": "habityzer-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "CLI tool for managing Habityzer tasks from your terminal",
   "main": "lib/index.js",
   "bin": {
