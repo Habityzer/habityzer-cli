@@ -4,6 +4,12 @@
 
 When the user asks about tasks, todos, or project management, automatically use the Habityzer CLI to fetch real-time data from their task management system.
 
+## 📍 CLI Location and Setup
+- **Package**: `habityzer-cli` npm package with binary in `bin/habityzer`
+- **Working Directory**: Always run from `/Users/vaz/Sites/habityzer/nuxt`
+- **Project Context**: Automatically filtered to Habityzer project (ID: 2)
+- **API Configuration**: Uses base URL `https://s.habityzer.com/api` with token from `.env`
+
 ### 📋 Task-Related Query Triggers
 Respond with CLI commands when user asks about:
 - "My tasks" / "Current tasks" / "Todo list"
@@ -17,19 +23,26 @@ Respond with CLI commands when user asks about:
 
 #### Viewing Tasks
 ```bash
-npx habityzer list           # Active tasks (Todo + In Progress) - DEFAULT
+# Default: Active tasks only (Todo + In Progress, excludes Ideas + Done)
+npx habityzer list           
+
+# Status-specific filtering
 npx habityzer list all       # All tasks including completed
 npx habityzer list done      # Completed tasks only
 npx habityzer list todo      # Todo tasks only
 npx habityzer list ideas     # Ideas only
 npx habityzer list progress  # In progress tasks only
+
+# Detailed task view (includes description)
+npx habityzer show <task-id>  # Show task details
 ```
 
 #### Managing Tasks
 ```bash
-npx habityzer create "Task title"                    # Create new task
-npx habityzer create "Task title" "Description"      # Create with description
-npx habityzer show <task-id>                         # Show task details
+# Task creation (always wrap in double quotes)
+npx habityzer create "Task title" "Description"      
+
+# Task updates
 npx habityzer update <task-id> <field> <value>       # Update task
 npx habityzer move <task-id> <status-id>             # Move task to status
 npx habityzer delete <task-id>                       # Delete task
@@ -41,13 +54,24 @@ npx habityzer projects       # List all projects
 npx habityzer statuses       # List all task statuses
 ```
 
+### 📊 Task Status Reference
+- **1** = Idea
+- **2** = Todo  
+- **3** = In Progress
+- **4** = Done
+
 ### 🎯 Default Behavior
 
 **When user asks "What are my tasks?" or similar:**
-1. Run `npx habityzer list` (shows active tasks by default)
+1. Run `npx habityzer list` (shows active tasks by default - Todo + In Progress only)
 2. Parse the CLI output
 3. Present results in a clear, formatted way
 4. Offer to show more details or other views if needed
+
+**Default `list` command behavior:**
+- Shows **active tasks only** (Todo + In Progress status)
+- Excludes Ideas and Done tasks by default
+- Use specific filters when you need other statuses
 
 ### 💡 Response Format Guidelines
 
@@ -61,14 +85,15 @@ When presenting tasks:
 ### ⚙️ Setup Requirements
 
 For projects using Habityzer CLI:
-1. Install: `npm install habityzer-cli`
-2. Configure environment variables in `.env`:
+1. **Package**: `habityzer-cli` npm package
+2. **Working Directory**: Always run from `/Users/vaz/Sites/habityzer/nuxt`
+3. Configure environment variables in `.env`:
    ```
    HABITYZER_API_TOKEN=your_token_here
    HABITYZER_PROJECT_ID=2  # Optional, defaults to 2
    HABITYZER_API_BASE_URL=https://s.habityzer.com/api  # Optional
    ```
-3. Test with: `npx habityzer list`
+4. Test with: `npx habityzer list`
 
 ### 🔄 Integration Examples
 
@@ -81,8 +106,38 @@ For projects using Habityzer CLI:
 **AI Response**: Show completed tasks with completion timestamps
 
 **User**: "Create a new task to fix the login bug"
-**AI Action**: Run `npx habityzer create "Fix login bug"`
+**AI Action**: Run `npx habityzer create "Fix login bug" "Users cannot login after password reset"`
 **AI Response**: Confirm task creation and show the new task details
+
+### 🛡️ Error Prevention Guidelines
+
+- Always run commands from the correct working directory (`/Users/vaz/Sites/habityzer/nuxt`)
+- Use double quotes around title and description for task creation
+- Verify task IDs before update/delete operations
+- Check available statuses with `npx habityzer statuses` before moving tasks
+- Ensure `.env` file has proper `HABITYZER_API_TOKEN` configuration
+
+### 📚 Usage Guidelines
+
+#### When to Use Each Command
+- **Checking current work**: Use `list` (shows active tasks)
+- **Planning**: Use `list ideas` (shows future tasks)
+- **Review completed work**: Use `list done`
+- **Getting task details**: Use `show <taskId>` for full description
+- **Creating new tasks**: Always provide both title and description in quotes
+
+#### Integration with Development Workflow
+- Use CLI for quick task management during development
+- Create tasks directly from Cursor chat when identifying bugs or features
+- Update task status as work progresses
+- Use detailed view to understand task context before starting work
+
+### 🔧 API Details
+- **Base URL**: `https://s.habityzer.com/api`
+- **Authentication**: Token stored in `.env` as `HABITYZER_API_TOKEN`
+- **Headers**: Requires `Accept: application/ld+json`
+- **Project Filter**: Automatically applies `project[]=/api/projects/2`
+- **Status Filter**: Uses format `status[]=/api/task_statuses/X`
 
 ### 📚 Additional Context
 
@@ -94,7 +149,8 @@ For projects using Habityzer CLI:
 
 ### 🚀 Pro Tips for Users
 
-- Use `npm run tasks` if you've added it to package.json scripts
-- CLI supports both npx and direct node execution
+- CLI supports npx execution from any directory  
 - Works great with git hooks for commit-time task updates
-- Perfect for standup meetings and progress tracking 
+- Perfect for standup meetings and progress tracking
+- Use specific status filters to focus on relevant work
+- Always provide meaningful descriptions when creating tasks 
