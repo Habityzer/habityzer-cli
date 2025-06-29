@@ -1,6 +1,6 @@
 {
   "name": "habityzer-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI tool for managing Habityzer tasks from your terminal",
   "main": "lib/index.js",
   "bin": {
@@ -37,5 +37,8 @@
   "bugs": {
     "url": "https://github.com/Habityzer/habityzer-cli/issues"
   },
-  "homepage": "https://github.com/Habityzer/habityzer-cli#readme"
+  "homepage": "https://github.com/Habityzer/habityzer-cli#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0"
+  }
 }

@@ -3,18 +3,7 @@
 const https = require('https')
 
 // Load environment variables from .env file
-try {
-  require('fs').readFileSync('.env', 'utf8')
-    .split('\n')
-    .forEach((line) => {
-      const [key, ...values] = line.split('=')
-      if (key && values.length) {
-        process.env[key] = values.join('=')
-      }
-    })
-} catch {
-  // .env file doesn't exist, continue with system env vars
-}
+require('dotenv').config()
 
 // Configuration
 const CONFIG = {
